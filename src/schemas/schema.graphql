@@ -1,0 +1,95 @@
+
+
+type Query {
+"obtenemos los usuarios"
+  users:[User!]!
+
+  "Obtenemos la lista de todas las actividades"
+   getActivities:[Activity!]!
+   
+  "obtenemos la lista de los instructores"
+   getInstructors:[Instructor!]!
+
+  "obtenemos un solo usuario"
+   getUser(_id:ID!):User!
+
+   "obtenemos una actividad"
+   getOneActivity:Activity!
+
+   "obtenemos un instructor"
+   getInstructor:Instructor!
+}
+
+ type Mutation{
+
+  "insertamos un usuario nuevo"
+   insertUser(user:UserInput!) : User!
+
+
+  "insertamos un instructor nuevo"
+  insertInstructor( instructor: UserInput) : Instructor!
+
+  "insertamos una actividad nueva"
+  insertActivity(activity:ActivityInput): Activity!
+
+ "actualizamos un usuario"
+  updateUser( user: UserInput) : User!
+
+  "actualizamos un instructor"
+  updateInstructor( instructor: UserInput) : Instructor!
+
+  "actualizamos una actividad nueva"
+  updateActivity(activity:ActivityInput): Activity!
+
+  "borramos un usuario"
+  deleteUser(user:UserInput):User!
+
+  "borramos un instructor"
+  deleteInstructor( instructor: UserInput) : Instructor!
+
+  "borramos una actividad nueva"
+  deleteActivity(activity:ActivityInput): Activity!
+
+}
+
+input UserInput {
+  _id:ID!
+  name:String!
+  lastName:String!
+  activity:ActivityInput!
+}
+
+
+
+input ActivityInput {
+  _id:ID!
+  nameActivity:String!
+  instructor:InstructorInput!
+}
+
+input InstructorInput {
+   _id:ID!
+  name:String!
+  lastName:String!
+  activities:[ActivityInput!]!
+}
+
+type User {
+    _id:ID!
+    name:String!
+    lastName:String!
+    activities:[Activity!]!
+}
+
+type Activity {
+  _id:ID!
+  activitiesName:String!
+  instructor:[Instructor]!
+}
+
+type Instructor{
+  _id:ID!
+  name:String!
+  lastName:String!
+  activities:[Activity!]!
+}
