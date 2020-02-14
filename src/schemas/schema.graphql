@@ -12,12 +12,13 @@ type Query {
 
   "obtenemos un solo usuario"
    getUser(_id:ID!):User!
+   
+   "obtenemos un instructor"
+   getInstructor(_id:ID!):Instructor!
 
    "obtenemos una actividad"
-   getOneActivity:Activity!
+   getOneActivity(_id:ID!):Activity!
 
-   "obtenemos un instructor"
-   getInstructor:Instructor!
 }
 
  type Mutation{
