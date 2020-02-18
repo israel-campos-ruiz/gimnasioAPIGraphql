@@ -24,14 +24,13 @@ type Query {
  type Mutation{
 
   "insertamos un usuario nuevo"
-   insertUser(user:UserInput!) : User!
-
+   insertUser(user:UserInput!) : insertOneUser!
 
   "insertamos un instructor nuevo"
-  insertInstructor( instructor: UserInput) : Instructor!
+  insertInstructor( instructor: InstructorInput!) : insertOneInstructor!
 
   "insertamos una actividad nueva"
-  insertActivity(activity:ActivityInput): Activity!
+  insertActivity(activity:ActivityInput): insertOneActivity!
 
  "actualizamos un usuario"
   updateUser( user: UserInput) : User!
@@ -53,44 +52,66 @@ type Query {
 
 }
 
-input UserInput {
-  _id:ID!
+# este es solo para obtener todos los usuarios
+type User {
+    _id:ID
+    name:String!
+    lastName:String!
+    registerDate:String
+    activities:[Activity!]!
+}
+# este es para insertar un usuario
+type insertOneUser {
+    name:String!
+    lastName:String!
+    registerDate:String
+    activities:String!
+}
+# para que podamos insertar si te das cuenta en lugar de recibir un array recibe un string
+input UserInput{
   name:String!
   lastName:String!
-  activity:ActivityInput!
+  activities:String!
 }
 
+# sirve para obtener a todos los instructores
+type Instructor{
+  _id:ID
+  name:String!
+  lastName:String!
+  registerDate:String
+  activities:[Activity!]!
+}
+# sirve para poder añadir a los instructores
+input InstructorInput {
+  name:String!
+  lastName:String!
+  activities:String!
+}
+
+# para que podamos insertar si te das cuenta en lugar de recibir un array recibe un string
+type insertOneInstructor{
+  name:String!
+  lastName:String!
+  registerDate:String
+  activities:String!
+}
 
 
 input ActivityInput {
-  _id:ID!
-  nameActivity:String!
-  instructor:InstructorInput!
-}
-
-input InstructorInput {
-   _id:ID!
-  name:String!
-  lastName:String!
-  activities:[ActivityInput!]!
-}
-
-type User {
-    _id:ID!
-    name:String!
-    lastName:String!
-    activities:[Activity!]!
+  activitiesName:String!
+  instructor:String!
 }
 
 type Activity {
-  _id:ID!
+  _id:ID
   activitiesName:String!
+  registerDate:String
   instructor:[Instructor]!
 }
 
-type Instructor{
-  _id:ID!
-  name:String!
-  lastName:String!
-  activities:[Activity!]!
+type insertOneActivity {
+  activitiesName:String!
+  registerDate:String
+  instructor:String!
 }

@@ -9,7 +9,8 @@ export class Datetime {
         let minutes : string = this.formatWithTwoDigits(String(dateTime.getMinutes()));
         let seconds : string = this.formatWithTwoDigits(String(dateTime.getSeconds()));
 
-        return `${dateTime.getFullYear()}${dateSeparateSymbol}${month}${dateSeparateSymbol}${dateDay} ${hour}:${minutes}:${seconds}`;
+        //return `${dateTime.getFullYear()}${dateSeparateSymbol}${month}${dateSeparateSymbol}${dateDay} ${hour}:${minutes}:${seconds}`;
+        return `${dateDay}${dateSeparateSymbol}${month}${dateSeparateSymbol}${dateTime.getFullYear()} ${hour}:${minutes}:${seconds}`;
     }
 
     private formatWithTwoDigits(value: number | string) {
