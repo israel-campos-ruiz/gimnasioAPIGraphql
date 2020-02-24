@@ -33,7 +33,7 @@ type Query {
   insertActivity(activity:ActivityInput): insertOneActivity!
 
  "actualizamos un usuario"
-  updateUser( user: UserInput) : User!
+  updateUser (_id: ID!, user:UserInput) : ResultOperation!
 
   "actualizamos un instructor"
   updateInstructor( instructor: UserInput) : Instructor!
@@ -66,6 +66,12 @@ type insertOneUser {
     lastName:String!
     registerDate:String
     activities:String!
+}
+
+type ResultOperation {
+    status:Boolean!
+    message:String!
+    user:User!
 }
 # para que podamos insertar si te das cuenta en lugar de recibir un array recibe un string
 input UserInput{
